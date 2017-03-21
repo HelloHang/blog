@@ -1,38 +1,67 @@
 package com.blog.models;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by dan on 2017/3/20.
  */
+
+@Entity
+@Table(name = "articles")
 public class ArticleModel extends ItemModel
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String id;
+
+    @Column(name = "title", nullable = false, unique = true)
     private String title;
 
+    @Column(name = "content", nullable = false)
     private String content;
 
+    @Column(name = "category", nullable = false)
     private String category;
 
+    @Column(name = "create_time", nullable = false, updatable = false)
     private Date createTime;
 
+    @Column(name = "modify_time", nullable = true)
     private Date modifyTime;
 
+    @Column
     private List<CommitModel> commits;
 
+    @Column
     private String viewPicturePath;
 
+    @Column
     private String description;
 
+    @Column
     private ArticleStatus status;
 
+    @Column
     private AuthorModel author;
 
+    @Column(name = "view_number")
     private Long viewNumber;
 
+    @Column(name = "praise_number")
     private Long praiseNumber;
 
-    private Long StepNumber;
+    @Column(name = "step_number")
+    private Long stepNumber;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -74,6 +103,14 @@ public class ArticleModel extends ItemModel
         this.modifyTime = modifyTime;
     }
 
+    public List<CommitModel> getCommits() {
+        return commits;
+    }
+
+    public void setCommits(List<CommitModel> commits) {
+        this.commits = commits;
+    }
+
     public String getViewPicturePath() {
         return viewPicturePath;
     }
@@ -98,6 +135,14 @@ public class ArticleModel extends ItemModel
         this.status = status;
     }
 
+    public AuthorModel getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(AuthorModel author) {
+        this.author = author;
+    }
+
     public Long getViewNumber() {
         return viewNumber;
     }
@@ -115,26 +160,10 @@ public class ArticleModel extends ItemModel
     }
 
     public Long getStepNumber() {
-        return StepNumber;
+        return stepNumber;
     }
 
     public void setStepNumber(Long stepNumber) {
-        StepNumber = stepNumber;
-    }
-
-    public List<CommitModel> getCommits() {
-        return commits;
-    }
-
-    public void setCommits(List<CommitModel> commits) {
-        this.commits = commits;
-    }
-
-    public AuthorModel getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(AuthorModel author) {
-        this.author = author;
+        this.stepNumber = stepNumber;
     }
 }
