@@ -5,5 +5,22 @@ package com.blog.models;
  */
 public enum ArticleStatus
 {
-    PUBLISHED, UnPUBLISHED;
+    PUBLISHED("publiched"),
+
+    UnPUBLISHED("unpublished");
+
+    private String status;
+
+    private ArticleStatus(String status)
+    {
+        this.setStatus(status);
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
