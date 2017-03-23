@@ -25,13 +25,15 @@ public class ArticleModel extends ItemModel
     @Column(name = "category", nullable = false)
     private String category;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "create_time", nullable = false, updatable = false)
     private Date createTime;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "modify_time", nullable = true)
     private Date modifyTime;
 
-    @Column
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "article")
     private List<CommitModel> commits;
 
     @Column
@@ -40,10 +42,11 @@ public class ArticleModel extends ItemModel
     @Column
     private String description;
 
-    @Column
+    @Enumerated(EnumType.ORDINAL)
     private ArticleStatus status;
 
-    @Column
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "authorId")
     private AuthorModel author;
 
     @Column(name = "view_number")
