@@ -7,6 +7,7 @@ import java.util.Date;
  * Created by dan on 2017/3/20.
  */
 @Entity
+@Table(name = "commits")
 public class CommitModel extends ItemModel
 {
     @Id
