@@ -18,8 +18,14 @@ public class DefaultArticleService implements ArticleService {
 
     private static final Logger LOGGER = Logger.getLogger(DefaultArticleService.class);
 
-    @Autowired
+
     private ArticleRepository articleRepository;
+
+    @Autowired
+    public DefaultArticleService(ArticleRepository articleRepository)
+    {
+        this.articleRepository = articleRepository;
+    }
 
     @Override
     public Page<ArticleModel> findAll(final PageRequest pageRequest)
