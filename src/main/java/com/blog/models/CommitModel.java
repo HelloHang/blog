@@ -11,8 +11,8 @@ import java.util.Date;
 public class CommitModel extends ItemModel
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "articleId")
@@ -27,14 +27,6 @@ public class CommitModel extends ItemModel
     private Date createTime;
 
     private String content;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public ArticleModel getArticle() {
         return article;
@@ -66,5 +58,13 @@ public class CommitModel extends ItemModel
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

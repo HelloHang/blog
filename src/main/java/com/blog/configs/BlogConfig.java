@@ -12,8 +12,6 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Created by dan on 2017/3/23.
  */
-@Configuration
-@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
 public class BlogConfig {
 
 }

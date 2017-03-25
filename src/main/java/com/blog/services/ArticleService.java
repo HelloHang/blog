@@ -12,7 +12,7 @@ public interface ArticleService
 {
     Page<ArticleModel> findAll(final PageRequest pageRequest);
 
-    ArticleModel findById(final String id);
+    ArticleModel findById(final Long id);
 
     void update(final ArticleModel article)throws ArticleNotFoundException;
 

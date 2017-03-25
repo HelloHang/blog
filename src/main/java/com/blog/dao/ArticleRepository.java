@@ -8,9 +8,9 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 /**
  * Created by dan on 2017/3/21.
  */
-public interface ArticleRepository extends PagingAndSortingRepository<ArticleModel, String> {
+public interface ArticleRepository extends PagingAndSortingRepository<ArticleModel, Long> {
 
-    ArticleModel findById(final String id);
+    ArticleModel findById(final Long id);
 
     ArticleModel findByTitle(final String title);
 
