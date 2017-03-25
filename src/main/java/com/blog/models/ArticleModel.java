@@ -13,8 +13,8 @@ import java.util.List;
 public class ArticleModel extends ItemModel
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "title", nullable = false, unique = true)
     private String title;
@@ -57,14 +57,6 @@ public class ArticleModel extends ItemModel
 
     @Column(name = "step_number")
     private Long stepNumber;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
@@ -168,5 +160,13 @@ public class ArticleModel extends ItemModel
 
     public void setStepNumber(Long stepNumber) {
         this.stepNumber = stepNumber;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

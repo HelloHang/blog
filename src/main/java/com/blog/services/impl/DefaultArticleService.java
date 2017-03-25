@@ -34,7 +34,7 @@ public class DefaultArticleService implements ArticleService {
     }
 
     @Override
-    public ArticleModel findById(final String id)
+    public ArticleModel findById(final Long id)
     {
         return articleRepository.findById(id);
     }
