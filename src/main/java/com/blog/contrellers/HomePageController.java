@@ -40,7 +40,7 @@ public class HomePageController extends AbstractPageController
 
     @RequestMapping("/save")
     @ResponseBody
-    public String saveArticle(final Model model)
+    public String saveArticle(final Model model)throws Exception
     {
         AuthorModel authorModel = new AuthorModel();
         authorModel.setName("Daniels");
