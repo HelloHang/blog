@@ -1,6 +1,7 @@
 package com.blog.converter;
 
 import com.blog.converter.populators.Populate;
+import com.blog.exceptions.NotFoundTargetClassException;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
@@ -8,33 +9,44 @@ import java.util.List;
 /**
  * Created by dan on 2017/3/26.
  */
-public class Converter<N, T>
+
+public class Converter<SOURCE, TARGET>
 {
     private Populate populate;
 
-    T convert(N n)
+    private Class<TARGET> targetClass;
+
+    TARGET convert(SOURCE source)throws Exception
     {
-        T t = new Class<T>().newInstance();
-        if(n != null)
+        TARGET target = createTarget();
+        if(source != null)
         {
-            populate.populate(n,t);
+            populate.populate(source,target);
         }
-        return t;
+        return target;
     }
 
-    List<T> convertAll(List<N> ns)
+    List<TARGET> convertAll(List<SOURCE> sources)throws Exception
     {
-        List<T> ts = new ArrayList<T>();
-        if(!CollectionUtils.isEmpty(ns))
+        List<TARGET> targets = new ArrayList<TARGET>();
+        if(!CollectionUtils.isEmpty(sources))
         {
-            for(N n : ns)
+            for(SOURCE source : sources)
             {
-                T t = new T();
-                populate.populate(n, t);
-                ts.add(t);
+                targets.add(convert(source));
             }
         }
-        return ts;
+        return targets;
+    }
+
+    protected TARGET createTarget()throws Exception
+    {
+        if(getTargetClass() == null)
+        {
+            throw new NotFoundTargetClassException("Target Class is empty.");
+        }
+
+        return getTargetClass().newInstance();
     }
 
     public Populate getPopulate() {
@@ -43,5 +55,13 @@ public class Converter<N, T>
 
     public void setPopulate(Populate populate) {
         this.populate = populate;
+    }
+
+    public Class<TARGET> getTargetClass() {
+        return targetClass;
+    }
+
+    public void setTargetClass(Class<TARGET> targetClass) {
+        this.targetClass = targetClass;
     }
 }

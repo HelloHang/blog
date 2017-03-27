@@ -7,11 +7,14 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 
 
 /**
  * Created by dan on 2017/3/23.
  */
+@Configuration
+@ImportResource("classpath:application-bean.xml")
 public class BlogConfig {
 
 }
